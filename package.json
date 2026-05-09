@@ -1,0 +1,17 @@
+{
+  "name": "six_moon-blog",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "six_moon's blog built with Astro",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.5.5",
+    "@astrojs/mdx": "^4.1.0"
+  }
+}

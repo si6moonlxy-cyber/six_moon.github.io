@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="six_moon 的博客" description="欢迎来到我的博客">
+  <section class="hero">
+    <h1>👋 欢迎来到 six_moon 的博客</h1>
+    <p>记录思考、技术与生活。</p>
+    <a href="/blog" class="cta-button">浏览博客 →</a>
+  </section>
+
+  <section class="features">
+    <div class="feature">
+      <h2>📝 博客</h2>
+      <p>技术分享、产品思考、学习笔记</p>
+    </div>
+    <div class="feature">
+      <h2>🚀 项目</h2>
+      <p>正在推进的 AI 产品与实践</p>
+    </div>
+    <div class="feature">
+      <h2>💡 想法</h2>
+      <p>日常思考与洞察</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 4rem 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 1rem;
+    margin-bottom: 3rem;
+  }
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  .hero p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+  .cta-button {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: white;
+    color: #667eea;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    transition: transform 0.2s;
+  }
+  .cta-button:hover {
+    transform: translateY(-2px);
+  }
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .feature {
+    padding: 2rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    text-align: center;
+  }
+  .feature h2 {
+    margin-bottom: 1rem;
+  }
+  .feature p {
+    color: #6b7280;
+  }
+</style>
