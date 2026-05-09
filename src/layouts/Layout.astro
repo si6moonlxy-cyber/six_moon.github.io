@@ -1,0 +1,61 @@
+---
+const { title = 'six_moon 的博客', description = '欢迎来到我的博客' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="/" class="nav-brand">six_moon 的博客</a>
+      <div class="nav-links">
+        <a href="/blog">博客</a>
+        <a href="/about">关于</a>
+      </div>
+    </nav>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <p>© 2026 six_moon. Built with Astro.</p>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: #1a1a2e;
+    color: white;
+  }
+  .nav-brand {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+  }
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 1.5rem;
+  }
+  main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+  }
+</style>
