@@ -1,7 +1,12 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { render } from 'astro:content';
-import { getLegacyPostSlug, getSourcePostSlug, getPublishedPosts } from '../../lib/posts';
+import {
+  getCompactPostSlug,
+  getLegacyPostSlug,
+  getSourcePostSlug,
+  getPublishedPosts,
+} from '../../lib/posts';
 import { getTagUrl } from '../../lib/tags';
 
 export async function getStaticPaths() {
@@ -10,7 +15,8 @@ export async function getStaticPaths() {
   return posts.flatMap((post) => {
     const canonicalSlug = getLegacyPostSlug(post);
     const sourceSlug = getSourcePostSlug(post);
-    const slugs = Array.from(new Set([canonicalSlug, sourceSlug]));
+    const compactSlug = getCompactPostSlug(post);
+    const slugs = Array.from(new Set([canonicalSlug, sourceSlug, compactSlug]));
 
     return slugs.map((slug) => ({
       params: { slug },

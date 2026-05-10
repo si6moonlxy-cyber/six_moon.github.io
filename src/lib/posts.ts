@@ -28,6 +28,10 @@ export function getLegacyPostSlug(post: BlogPost) {
   return normalizePostSlug(getPostSlug(post));
 }
 
+export function getCompactPostSlug(post: BlogPost) {
+  return normalizePostSlug(getPostSlug(post).replace(/[-_]+/g, ''));
+}
+
 export function getPostUrl(post: BlogPost) {
   return `/blog/${getLegacyPostSlug(post)}/`;
 }
