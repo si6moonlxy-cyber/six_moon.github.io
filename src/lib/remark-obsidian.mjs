@@ -43,6 +43,7 @@ function slugSegment(value) {
     .trim()
     .replace(/\.mdx?$/i, '')
     .toLowerCase()
+    .replace(/\s+/g, '-')
     .replace(/[^a-z0-9\u4e00-\u9fa5_-]+/g, '');
 }
 

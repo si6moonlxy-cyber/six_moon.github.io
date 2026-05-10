@@ -18,7 +18,7 @@ tags:
   - 页面风格与整体博客保持一致（使用现有 Astro 布局组件）。
   - 提供 Astro 页面文件（如 `about.astro`）及对应的样式代码，可引用 Heroicons 图标或 SVG 图标。
 
-![[about v1.0.1.png]]
+![https://res.cloudinary.com/dn3exco8l/image/upload/v1778403249/six-moon-blog/blog/about_v1.0.1.png](https://res.cloudinary.com/dn3exco8l/image/upload/v1778403249/six-moon-blog/blog/about_v1.0.1.png)
 ## 2. Obsidian 写作流与 Astro 解析
 - 我的写作流程：在 Obsidian 编辑 Markdown 笔记（含 `[[双链]]`、`![[图片引用]]`、标签和 Front Matter），放在本地 Obsidian vault 中的 `blog-posts` 文件夹，定期同步到 Astro 项目 `src/content/posts/` 目录。
 - 要求：
@@ -36,7 +36,7 @@ tags:
   - 提供 Astro 组件或页面的示例代码，使用 `Astro.props` 或 `getCollection` 过滤实现。
   - 考虑 SEO：是否为每个标签生成独立页面（如 `/tags/生活`）更友好？如果这样更好，请给出现有路由和生成逻辑。
 
-![[index.png]]
+![https://res.cloudinary.com/dn3exco8l/image/upload/v1778403252/six-moon-blog/blog/index.png](https://res.cloudinary.com/dn3exco8l/image/upload/v1778403252/six-moon-blog/blog/index.png)
 
 ## 4. 图片资源管理与存储
 - 当前图片直接存放在 GitHub 仓库中，导致仓库体积过大，部署变慢。
@@ -46,7 +46,7 @@ tags:
   - 工作流集成：在 Obsidian 中使用 PicGo 插件，上传图片后自动得到图床链接，替换本地的 `![[image.png]]` 引用；或在 Astro 构建阶段用图片优化插件处理本地图片并上传至 CDN。
 - 请给出推荐方案，提供具体的配置步骤和代码。如果选择 Cloudinary，请说明如何通过环境变量安全储存 API Key。
 
-![[upload-img-obs-cloud.png]]
+![https://res.cloudinary.com/dn3exco8l/image/upload/v1778403253/six-moon-blog/blog/upload-img-obs-cloud.png](https://res.cloudinary.com/dn3exco8l/image/upload/v1778403253/six-moon-blog/blog/upload-img-obs-cloud.png)
 
 # 输出要求
 - 每个需求的解决方案需包含：
