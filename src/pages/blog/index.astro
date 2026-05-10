@@ -1,37 +1,19 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import PostCard from '../../components/PostCard.astro';
+import TagFilter from '../../components/TagFilter.astro';
+import { getPublishedPosts } from '../../lib/posts';
 
-const posts = await getCollection('blog', ({ data }) => {
-  return data.draft !== true;
-});
-
-posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = await getPublishedPosts();
 ---
 
 <Layout title="博客 - six_moon" description="浏览所有博客文章">
-  <h1>📝 所有文章</h1>
-  
+  <h1>所有文章</h1>
+  <TagFilter />
+
   <div class="post-list">
     {posts.map((post) => (
-      <article class="post-item">
-        <a href={`/blog/${post.id.replace(/\.(md|mdx)$/, '/')}`} class="post-link">
-          <h2>{post.data.title}</h2>
-          <p class="post-description">{post.data.description}</p>
-          <div class="post-meta">
-            <time datetime={post.data.pubDate.toISOString()}>
-              {post.data.pubDate.toLocaleDateString('zh-CN')}
-            </time>
-            {post.data.tags && (
-              <div class="tags">
-                {post.data.tags.map((tag) => (
-                  <span class="tag">#{tag}</span>
-                ))}
-              </div>
-            )}
-          </div>
-        </a>
-      </article>
+      <PostCard post={post} />
     ))}
   </div>
 </Layout>
@@ -44,44 +26,5 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-  }
-  .post-item {
-    border: 1px solid #e5e7eb;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    transition: box-shadow 0.2s;
-  }
-  .post-item:hover {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  }
-  .post-link {
-    text-decoration: none;
-    color: inherit;
-  }
-  .post-link h2 {
-    margin-bottom: 0.5rem;
-    color: #1f2937;
-  }
-  .post-description {
-    color: #6b7280;
-    margin-bottom: 1rem;
-  }
-  .post-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.875rem;
-    color: #9ca3af;
-  }
-  .tags {
-    display: flex;
-    gap: 0.5rem;
-  }
-  .tag {
-    background: #f3f4f6;
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    color: #4b5563;
   }
 </style>

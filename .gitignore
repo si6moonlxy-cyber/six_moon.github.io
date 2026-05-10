@@ -19,3 +19,14 @@ pnpm-debug.log*
 
 # Astro
 .astro/
+
+# local images handled by Cloudinary
+public/images/**/*.png
+public/images/**/*.jpg
+public/images/**/*.jpeg
+public/images/**/*.gif
+public/images/**/*.webp
+public/images/**/*.avif
+public/images/**/*.bmp
+public/images/**/*.tiff
+!public/images/**/.gitkeep

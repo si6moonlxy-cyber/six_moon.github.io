@@ -1,0 +1,240 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const socialLinks = [
+  {
+    name: 'GitHub',
+    href: 'https://github.com/si6moonlxy-cyber',
+    icon: 'github',
+  },
+  {
+    name: 'Twitter',
+    href: 'https://twitter.com/six_moonlxy',
+    icon: 'twitter',
+  },
+  {
+    name: '抖音',
+    href: 'https://www.douyin.com/user/MS4wLjABAAAAWXT7Blk-07e3nom_rfoREHtI1nZyr3IDB7jaxlNS3Ugj0U6vBu7XOtpdY8ASO045?from_tab_name=main',
+    icon: 'douyin',
+  },
+  {
+    name: 'Email',
+    copyValue: 'si6moonlxy@gmail.com',
+    icon: 'mail',
+  },
+];
+---
+
+<Layout title="关于 - six_moon" description="关于 six_moon 和这个博客">
+  <section class="about">
+    <div class="profile">
+      <img src="/images/blog/avatar-placeholder.png" alt="avatar" class="avatar" />
+      <div class="intro">
+        <p class="eyebrow">About</p>
+        <h1>six_moon</h1>
+        <p>
+          我是 six_moon，一名 26 届计算机专业学生，也在尝试把 AI 产品、前端实践和个人写作串成自己的长期项目。这个博客会记录求职阶段的产品 Demo、技术学习笔记、AI 产品经理方向的观察，以及一些生活里的真实想法。我希望它既是公开作品集，也是给未来自己的工作日志：保留问题、方案、取舍和复盘，而不只展示完成后的结果。
+        </p>
+      </div>
+    </div>
+
+    <ul class="social-list" aria-label="社交平台链接">
+      {
+        socialLinks.map((item) => (
+          <li>
+            {item.copyValue ? (
+              <button type="button" data-copy-email={item.copyValue} aria-label="复制邮箱地址">
+                {item.icon === 'mail' && (
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm8 7.42L4.48 7H4v.55l8 5.76 8-5.76V7h-.48L12 12.42Z" />
+                  </svg>
+                )}
+                <span>{item.name}</span>
+                <span class="copy-status" data-copy-status></span>
+              </button>
+            ) : (
+            <a href={item.href} target="_blank" rel="noreferrer">
+              {item.icon === 'github' && (
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.84 9.71.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.38-3.37-1.38-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.96c.85 0 1.7.12 2.5.34 1.9-1.33 2.74-1.05 2.74-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.95.68 1.91 0 1.38-.01 2.49-.01 2.83 0 .27.18.59.69.49A10.13 10.13 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z" />
+                </svg>
+              )}
+              {item.icon === 'twitter' && (
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M18.9 2.75h3.07l-6.7 7.66 7.88 10.84h-6.17l-4.83-6.56-5.53 6.56H3.55l7.17-8.2L3.16 2.75h6.32l4.37 5.99 5.05-5.99Zm-1.08 16.59h1.7L8.55 4.56H6.72l11.1 14.78Z" />
+                </svg>
+              )}
+              {item.icon === 'douyin' && (
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M15.2 2.5v3.04c1.27.92 2.73 1.45 4.3 1.56v3.13a8.46 8.46 0 0 1-4.3-1.15v5.86c0 3.63-2.86 6.56-6.39 6.56-2.6 0-4.84-1.6-5.84-3.89a6.67 6.67 0 0 1 1.39-7.22 6.28 6.28 0 0 1 5.47-1.67v3.24a3.15 3.15 0 0 0-3.38 1.07 3.35 3.35 0 0 0-.53 3.63 3.18 3.18 0 0 0 2.9 1.9c1.76 0 3.2-1.47 3.2-3.28V2.5h3.18Z" />
+                </svg>
+              )}
+              <span>{item.name}</span>
+            </a>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Layout>
+
+<script>
+  const copyButtons = document.querySelectorAll('[data-copy-email]');
+
+  async function copyText(value) {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(value);
+      return;
+    }
+
+    const textarea = document.createElement('textarea');
+    textarea.value = value;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    textarea.remove();
+  }
+
+  copyButtons.forEach((button) => {
+    button.addEventListener('click', async () => {
+      const email = button.getAttribute('data-copy-email');
+      const status = button.querySelector('[data-copy-status]');
+
+      if (!email || !status) return;
+
+      await copyText(email);
+      status.textContent = '已复制';
+      window.setTimeout(() => {
+        status.textContent = '';
+      }, 1600);
+    });
+  });
+</script>
+
+<style>
+  .about {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .profile {
+    display: grid;
+    grid-template-columns: 132px 1fr;
+    gap: 2rem;
+    align-items: center;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .avatar {
+    width: 132px;
+    height: 132px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--surface-hover);
+  }
+
+  .eyebrow {
+    margin: 0 0 0.5rem;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0 0 1rem;
+    color: var(--text-primary);
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+
+  .intro p:last-child {
+    color: var(--text-secondary);
+    font-size: 1.08rem;
+    line-height: 1.9;
+    margin: 0;
+  }
+
+  .social-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.1rem;
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 0;
+  }
+
+  .social-list li,
+  .social-list a,
+  .social-list button {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .social-list a,
+  .social-list button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.85rem;
+    min-height: 4rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    background: color-mix(in srgb, var(--surface-bg) 86%, var(--surface-soft));
+    color: var(--text-primary);
+    font: inherit;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s,
+      box-shadow 0.2s,
+      transform 0.2s;
+  }
+
+  .social-list a:hover,
+  .social-list button:hover {
+    border-color: var(--accent);
+    background: var(--surface-hover);
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-2px);
+  }
+
+  .copy-status {
+    margin-left: auto;
+    color: var(--accent);
+    font-size: 0.85rem;
+  }
+
+  svg {
+    width: 1.45rem;
+    height: 1.45rem;
+    flex: 0 0 auto;
+    fill: currentColor;
+  }
+
+  @media (max-width: 640px) {
+    .profile {
+      grid-template-columns: 1fr;
+    }
+
+    .social-list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 900px) {
+    .social-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

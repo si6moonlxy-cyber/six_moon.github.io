@@ -1,0 +1,44 @@
+<button class="theme-toggle" type="button" aria-label="切换深色或浅色模式" aria-pressed="false" data-theme-toggle>
+  <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 4.75a1 1 0 0 1-1-1V2a1 1 0 1 1 2 0v1.75a1 1 0 0 1-1 1Zm0 18.25a1 1 0 0 1-1-1v-1.75a1 1 0 1 1 2 0V22a1 1 0 0 1-1 1Zm7.07-16.07a1 1 0 0 1-.71-1.71l1.24-1.23a1 1 0 0 1 1.41 1.41l-1.23 1.24a1 1 0 0 1-.71.29ZM3.7 20.6a1 1 0 0 1-.71-1.7l1.24-1.24a1 1 0 0 1 1.41 1.41L4.4 20.31a1 1 0 0 1-.7.29ZM22 13h-1.75a1 1 0 1 1 0-2H22a1 1 0 1 1 0 2ZM3.75 13H2a1 1 0 1 1 0-2h1.75a1 1 0 1 1 0 2Zm16.56 7.6a1 1 0 0 1-.71-.29l-1.24-1.24a1 1 0 0 1 1.42-1.41l1.23 1.24a1 1 0 0 1-.7 1.7ZM4.93 6.93a1 1 0 0 1-.7-.29L2.99 5.4A1 1 0 0 1 4.4 3.99l1.24 1.23a1 1 0 0 1-.71 1.71ZM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z" />
+  </svg>
+  <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M20.74 14.55a1 1 0 0 1 .18 1.03A9.5 9.5 0 1 1 8.42 3.08a1 1 0 0 1 1.24 1.21 7.5 7.5 0 0 0 10.05 10.05 1 1 0 0 1 1.03.21Z" />
+  </svg>
+</button>
+
+<style>
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid var(--nav-border);
+    border-radius: 9999px;
+    background: var(--nav-button-bg);
+    color: var(--nav-text);
+    cursor: pointer;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s,
+      color 0.2s,
+      transform 0.2s;
+  }
+
+  .theme-toggle:hover {
+    background: var(--nav-button-hover-bg);
+    transform: translateY(-1px);
+  }
+
+  .theme-toggle__icon {
+    width: 1.1rem;
+    height: 1.1rem;
+    fill: currentColor;
+  }
+
+  :global(html[data-theme='light']) .theme-toggle__icon--sun,
+  :global(html[data-theme='dark']) .theme-toggle__icon--moon {
+    display: none;
+  }
+</style>

@@ -1,0 +1,111 @@
+---
+import { getPostUrl, type BlogPost } from '../lib/posts';
+import { getTagUrl } from '../lib/tags';
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+---
+
+<article class="post-card">
+  <h2>
+    <a href={getPostUrl(post)}>{post.data.title}</a>
+  </h2>
+  <p class="post-description">{post.data.description}</p>
+  <div class="post-meta">
+    <time datetime={post.data.pubDate.toISOString()}>
+      {post.data.pubDate.toLocaleDateString('zh-CN')}
+    </time>
+    {
+      post.data.tags.length > 0 && (
+        <div class="tags" aria-label="文章标签">
+          {post.data.tags.map((tag) => (
+            <a class="tag" href={getTagUrl(tag)}>
+              #{tag}
+            </a>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .post-card {
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    background: var(--surface-bg);
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+  }
+
+  .post-card:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-soft);
+  }
+
+  h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.35rem;
+    line-height: 1.35;
+  }
+
+  h2 a {
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  h2 a:hover {
+    color: var(--accent);
+  }
+
+  .post-description {
+    color: var(--text-secondary);
+    margin: 0 0 1rem;
+  }
+
+  .post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: flex-end;
+  }
+
+  .tag {
+    background: var(--surface-soft);
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+
+  .tag:hover {
+    background: var(--surface-hover);
+    color: var(--accent-strong);
+  }
+
+  @media (max-width: 640px) {
+    .post-meta {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .tags {
+      justify-content: flex-start;
+    }
+  }
+</style>

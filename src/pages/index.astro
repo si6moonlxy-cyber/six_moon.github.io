@@ -10,22 +10,34 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <section class="features">
-    <div class="feature">
-      <h2>📝 博客</h2>
+    <a class="feature" href="/tags/blog/">
+      <div class="feature-heading">
+        <span class="feature-icon" aria-hidden="true">📝</span>
+        <h2>博客</h2>
+      </div>
       <p>技术分享、产品思考、学习笔记</p>
-    </div>
-    <div class="feature">
-      <h2>🚀 项目</h2>
+    </a>
+    <a class="feature" href="/tags/project/">
+      <div class="feature-heading">
+        <span class="feature-icon" aria-hidden="true">🚀</span>
+        <h2>项目</h2>
+      </div>
       <p>正在推进的 AI 产品与实践</p>
-    </div>
-    <div class="feature">
-      <h2>💡 想法</h2>
-      <p>日常思考与洞察</p>
-    </div>
-    <div class="feature">
-      <h2>🏞️ 生活</h2>
+    </a>
+    <a class="feature" href="/tags/life/">
+      <div class="feature-heading">
+        <span class="feature-icon" aria-hidden="true">🏞️</span>
+        <h2>生活</h2>
+      </div>
       <p>个人生活与感悟</p>
-    </div>
+    </a>
+    <a class="feature" href="/tags/idea/">
+      <div class="feature-heading">
+        <span class="feature-icon" aria-hidden="true">💡</span>
+        <h2>想法</h2>
+      </div>
+      <p>日常思考与洞察</p>
+    </a>
   </section>
 </Layout>
 
@@ -33,8 +45,8 @@ import Layout from '../layouts/Layout.astro';
   .hero {
     text-align: center;
     padding: 4rem 1rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+    color: #ffffff;
     border-radius: 1rem;
     margin-bottom: 3rem;
   }
@@ -50,8 +62,8 @@ import Layout from '../layouts/Layout.astro';
   .cta-button {
     display: inline-block;
     padding: 0.75rem 2rem;
-    background: white;
-    color: #667eea;
+    background: #ffffff;
+    color: var(--accent-strong);
     text-decoration: none;
     border-radius: 0.5rem;
     font-weight: bold;
@@ -67,15 +79,44 @@ import Layout from '../layouts/Layout.astro';
     margin-top: 3rem;
   }
   .feature {
+    display: block;
     padding: 2rem;
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--border-color);
     border-radius: 0.5rem;
     text-align: center;
+    color: inherit;
+    text-decoration: none;
+    background: var(--surface-bg);
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s,
+      transform 0.2s;
   }
-  .feature h2 {
+  .feature:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-2px);
+  }
+  .feature-heading {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
     margin-bottom: 1rem;
   }
+  .feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    line-height: 1;
+    transform: translateY(-1px);
+  }
+  .feature h2 {
+    margin: 0;
+    color: var(--text-primary);
+  }
   .feature p {
-    color: #6b7280;
+    color: var(--text-secondary);
   }
 </style>

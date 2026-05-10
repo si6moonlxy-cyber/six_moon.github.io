@@ -8,10 +8,13 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "upload:cloudinary": "node scripts/upload-images-cloudinary.mjs",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/mdx": "^4.1.0",
     "astro": "^5.5.5",
-    "@astrojs/mdx": "^4.1.0"
+    "cloudinary": "^2.10.0",
+    "dotenv": "^17.4.2"
   }
 }

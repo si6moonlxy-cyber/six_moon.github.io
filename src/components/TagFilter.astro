@@ -1,0 +1,55 @@
+---
+import { BLOG_TAGS, getTagUrl, type BlogTag } from '../lib/tags';
+
+interface Props {
+  activeTag?: BlogTag;
+}
+
+const { activeTag } = Astro.props;
+---
+
+<nav class="tag-filter" aria-label="按标签筛选文章">
+  <a class:list={['tag-filter__item', { active: !activeTag }]} href="/blog/">全部</a>
+  {
+    BLOG_TAGS.map((tag) => (
+      <a
+        class:list={['tag-filter__item', { active: activeTag === tag }]}
+        href={getTagUrl(tag)}
+      >
+        {tag}
+      </a>
+    ))
+  }
+</nav>
+
+<style>
+  .tag-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0 2rem;
+  }
+
+  .tag-filter__item {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--border-color);
+    border-radius: 9999px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s,
+      color 0.2s;
+  }
+
+  .tag-filter__item:hover,
+  .tag-filter__item.active {
+    border-color: var(--accent);
+    background: var(--surface-hover);
+    color: var(--accent-strong);
+  }
+</style>
