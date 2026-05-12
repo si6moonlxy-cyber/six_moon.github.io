@@ -2,6 +2,7 @@
 title: 博客PRD v1.0.1
 description: 页面修改,obsidian+Astro的MD文档格式对齐,文章标签分类导航,图片资源图床
 pubDate: 2026-05-10
+draft: false
 tags:
   - 博客
 ---

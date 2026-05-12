@@ -72,8 +72,19 @@ const { title = 'six_moon 的博客', description = '欢迎来到我的博客' }
     --surface-bg: #ffffff;
     --surface-soft: #f3f4f6;
     --surface-hover: #eef2ff;
+    --font-body: "Segoe UI", "Microsoft YaHei", "微软雅黑", system-ui, -apple-system,
+      BlinkMacSystemFont, Arial, sans-serif;
+    --font-code: Consolas, "Microsoft YaHei UI", "Microsoft YaHei", "微软雅黑",
+      "Courier New", monospace;
     --accent: #667eea;
     --accent-strong: #4338ca;
+    --accent-soft: #e0e7ff;
+    --code-bg: #f6f8fa;
+    --code-text: #24292f;
+    --code-block-bg: #111827;
+    --code-block-text: #e5e7eb;
+    --table-header-bg: #f8fafc;
+    --table-row-alt-bg: #fbfdff;
     --nav-bg: #1a1a2e;
     --nav-text: #ffffff;
     --nav-border: rgba(255, 255, 255, 0.24);
@@ -94,6 +105,13 @@ const { title = 'six_moon 的博客', description = '欢迎来到我的博客' }
     --surface-hover: #312e81;
     --accent: #a5b4fc;
     --accent-strong: #c7d2fe;
+    --accent-soft: #312e81;
+    --code-bg: #273449;
+    --code-text: #e5e7eb;
+    --code-block-bg: #020617;
+    --code-block-text: #e2e8f0;
+    --table-header-bg: #273449;
+    --table-row-alt-bg: rgba(255, 255, 255, 0.03);
     --nav-bg: #030712;
     --nav-text: #f9fafb;
     --nav-border: rgba(255, 255, 255, 0.18);
@@ -104,15 +122,39 @@ const { title = 'six_moon 的博客', description = '欢迎来到我的博客' }
 
   :global(html) {
     background: var(--page-bg);
+    font-family: var(--font-body);
+    line-height: 1.75;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  :global(*) {
+    box-sizing: border-box;
   }
 
   :global(body) {
     margin: 0;
     background: var(--page-bg);
     color: var(--text-primary);
+    font-size: 16px;
+    line-height: 1.75;
     transition:
       background-color 0.2s,
       color 0.2s;
+  }
+
+  :global(pre),
+  :global(code),
+  :global(kbd),
+  :global(samp),
+  :global(.astro-code),
+  :global(.astro-code code),
+  :global(.astro-code span),
+  :global(.expressive-code),
+  :global(.expressive-code pre),
+  :global(.expressive-code code),
+  :global(.expressive-code span),
+  :global(pre code) {
+    font-family: var(--font-code);
   }
 
   .navbar {

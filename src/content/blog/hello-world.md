@@ -2,6 +2,7 @@
 title: 我的第一篇博客
 description: 自我介绍+博客意图
 pubDate: 2026-05-08
+draft: false
 tags:
   - 生活
 ---
