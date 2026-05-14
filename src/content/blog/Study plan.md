@@ -2,9 +2,9 @@
 title: 学习计划
 description: AI 产品经理方向的阶段学习计划
 pubDate: 2026-05-12
+draft: false
 tags:
   - 想法
-draft: false
 ---
 ### 1. 先补「AI 产品技术基础」：2 周
 

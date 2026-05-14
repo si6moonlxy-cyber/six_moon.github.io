@@ -49,11 +49,4 @@ tags:
 
 ![https://res.cloudinary.com/dn3exco8l/image/upload/v1778403253/six-moon-blog/blog/upload-img-obs-cloud.png](https://res.cloudinary.com/dn3exco8l/image/upload/v1778403253/six-moon-blog/blog/upload-img-obs-cloud.png)
 
-# 输出要求
-- 每个需求的解决方案需包含：
-  - 必要的环境工具或插件安装命令（如适用）。
-  - 完整的文件路径和代码块。
-  - 简要的“为什么这样实现”的解释。
-- 优先保证方案的可维护性和最简实现，避免过度工程化。
-
 # [[Blog PRD|版本一览]]

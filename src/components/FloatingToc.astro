@@ -1,0 +1,432 @@
+---
+type TocHeading = {
+  depth: number;
+  slug: string;
+  text: string;
+};
+
+type TocChild = TocHeading & {
+  children: TocHeading[];
+};
+
+type TocSection = TocHeading & {
+  children: TocChild[];
+};
+
+const { headings = [] } = Astro.props as { headings?: TocHeading[] };
+const tocHeadings = headings.filter((heading) => heading.depth >= 2 && heading.depth <= 4);
+const tocSections: TocSection[] = [];
+
+for (const heading of tocHeadings) {
+  if (heading.depth === 2 || tocSections.length === 0) {
+    tocSections.push({
+      ...heading,
+      depth: heading.depth === 2 ? heading.depth : 2,
+      children: [],
+    });
+    continue;
+  }
+
+  const section = tocSections[tocSections.length - 1];
+
+  if (heading.depth === 3 || section.children.length === 0) {
+    section.children.push({
+      ...heading,
+      depth: heading.depth === 3 ? heading.depth : 3,
+      children: [],
+    });
+    continue;
+  }
+
+  section.children[section.children.length - 1].children.push(heading);
+}
+---
+
+{tocSections.length > 0 && (
+  <nav class="floating-toc" aria-label="文章目录" data-floating-toc>
+    <div class="toc-title">目录</div>
+    <ol class="toc-sections">
+      {tocSections.map((section, sectionIndex) => {
+        const hasChildren = section.children.length > 0;
+        const panelId = `toc-section-${sectionIndex}`;
+
+        return (
+          <li class="toc-section" data-toc-section data-collapsed={hasChildren ? true : undefined}>
+            <div class="toc-section-row">
+              {hasChildren ? (
+                <button
+                  class="toc-toggle"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls={panelId}
+                  data-toc-toggle
+                >
+                  <span aria-hidden="true">›</span>
+                  <span class="sr-only">切换子目录</span>
+                </button>
+              ) : (
+                <span class="toc-toggle-spacer" aria-hidden="true"></span>
+              )}
+              <a class="toc-link toc-link-level-2" href={`#${section.slug}`} data-toc-link data-toc-depth="2">
+                {section.text}
+              </a>
+            </div>
+
+            {hasChildren && (
+              <ol class="toc-children" id={panelId} data-toc-panel aria-hidden="true">
+                {section.children.map((child) => (
+                  <li>
+                    <a class="toc-link toc-link-level-3" href={`#${child.slug}`} data-toc-link data-toc-depth="3">
+                      {child.text}
+                    </a>
+                    {child.children.length > 0 && (
+                      <ol class="toc-grandchildren">
+                        {child.children.map((grandchild) => (
+                          <li>
+                            <a
+                              class="toc-link toc-link-level-4"
+                              href={`#${grandchild.slug}`}
+                              data-toc-link
+                              data-toc-depth="4"
+                            >
+                              {grandchild.text}
+                            </a>
+                          </li>
+                        ))}
+                      </ol>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            )}
+          </li>
+        );
+      })}
+    </ol>
+  </nav>
+)}
+
+<script is:inline>
+  (() => {
+    const toc = document.querySelector('[data-floating-toc]');
+    if (!toc) {
+      return;
+    }
+
+    const links = Array.from(toc.querySelectorAll('[data-toc-link]'));
+    const sections = Array.from(toc.querySelectorAll('[data-toc-section]'));
+    const headingById = new Map();
+    const manuallyCollapsedSections = new Set();
+
+    const getLinkTargetId = (link) => {
+      const href = link.getAttribute('href') || '';
+      const rawHash = href.startsWith('#') ? href.slice(1) : '';
+
+      if (!rawHash) {
+        return '';
+      }
+
+      try {
+        return decodeURIComponent(rawHash);
+      } catch {
+        return rawHash;
+      }
+    };
+
+    const setSectionOpen = (section, isOpen) => {
+      const toggle = section?.querySelector('[data-toc-toggle]');
+      const panel = section?.querySelector('[data-toc-panel]');
+
+      if (!toggle || !panel) {
+        return;
+      }
+
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      panel.setAttribute('aria-hidden', String(!isOpen));
+
+      if (isOpen) {
+        section.removeAttribute('data-collapsed');
+      } else {
+        section.setAttribute('data-collapsed', '');
+      }
+    };
+
+    for (const section of sections) {
+      const toggle = section.querySelector('[data-toc-toggle]');
+
+      toggle?.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+        if (isExpanded) {
+          manuallyCollapsedSections.add(section);
+        } else {
+          manuallyCollapsedSections.delete(section);
+        }
+
+        setSectionOpen(section, !isExpanded);
+      });
+    }
+
+    for (const link of links) {
+      const id = getLinkTargetId(link);
+      const heading = document.getElementById(id);
+
+      if (heading) {
+        headingById.set(id, {
+          heading,
+          link,
+          section: link.closest('[data-toc-section]'),
+        });
+      }
+    }
+
+    const items = Array.from(headingById.values());
+    if (items.length === 0) {
+      return;
+    }
+
+    const activate = (activeItem) => {
+      for (const link of links) {
+        link.removeAttribute('aria-current');
+      }
+
+      if (!activeItem) {
+        return;
+      }
+
+      activeItem.link.setAttribute('aria-current', 'true');
+
+      for (const section of sections) {
+        if (section === activeItem.section && !manuallyCollapsedSections.has(section)) {
+          setSectionOpen(section, true);
+        }
+      }
+    };
+
+    if (!('IntersectionObserver' in window)) {
+      activate(items[0]);
+      return;
+    }
+
+    const visibleHeadings = new Set();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const item = items.find(({ heading }) => heading === entry.target);
+
+          if (!item) {
+            continue;
+          }
+
+          if (entry.isIntersecting) {
+            visibleHeadings.add(item);
+          } else {
+            visibleHeadings.delete(item);
+          }
+        }
+
+        const activeItem =
+          Array.from(visibleHeadings).sort(
+            (a, b) => a.heading.offsetTop - b.heading.offsetTop,
+          )[0] ?? items.find(({ heading }) => heading.offsetTop >= window.scrollY + 120) ?? items[items.length - 1];
+
+        activate(activeItem);
+      },
+      {
+        rootMargin: '-18% 0px -70% 0px',
+        threshold: 0,
+      },
+    );
+
+    for (const { heading } of items) {
+      observer.observe(heading);
+    }
+
+    const setInitialActiveLink = () => {
+      const currentItem =
+        [...items]
+          .reverse()
+          .find(({ heading }) => heading.offsetTop <= window.scrollY + 140) ?? items[0];
+
+      activate(currentItem);
+    };
+
+    setInitialActiveLink();
+    window.addEventListener('hashchange', setInitialActiveLink);
+  })();
+</script>
+
+<style>
+  .floating-toc {
+    position: static;
+    width: 100%;
+    max-height: calc(100vh - 7rem);
+    overflow-y: auto;
+    padding: 0.9rem 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    background: var(--surface-bg);
+    background: color-mix(in srgb, var(--surface-bg) 94%, transparent);
+    box-shadow: var(--shadow-soft);
+    scrollbar-width: thin;
+  }
+
+  .toc-title {
+    margin-bottom: 0.55rem;
+    padding: 0 0.4rem;
+    color: var(--text-primary);
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+
+  .toc-sections,
+  .toc-children,
+  .toc-grandchildren {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .toc-sections {
+    display: grid;
+    gap: 0.14rem;
+  }
+
+  .toc-section {
+    min-width: 0;
+  }
+
+  .toc-section-row {
+    display: grid;
+    grid-template-columns: 1.4rem minmax(0, 1fr);
+    align-items: start;
+    gap: 0.08rem;
+  }
+
+  .toc-toggle,
+  .toc-toggle-spacer {
+    width: 1.35rem;
+    height: 1.7rem;
+  }
+
+  .toc-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0.35rem;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    font: inherit;
+    line-height: 1;
+  }
+
+  .toc-toggle:hover {
+    background: var(--surface-hover);
+    color: var(--accent-strong);
+  }
+
+  .toc-toggle span[aria-hidden='true'] {
+    display: inline-block;
+    font-size: 1rem;
+    transform: rotate(90deg);
+    transition: transform 0.16s ease;
+  }
+
+  .toc-section[data-collapsed] .toc-toggle span[aria-hidden='true'] {
+    transform: rotate(0deg);
+  }
+
+  .toc-link {
+    display: block;
+    min-width: 0;
+    border-left: 2px solid transparent;
+    border-radius: 0.35rem;
+    color: var(--text-muted);
+    line-height: 1.42;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    transition:
+      background-color 0.18s ease,
+      border-color 0.18s ease,
+      color 0.18s ease;
+  }
+
+  .toc-link-level-2 {
+    padding: 0.34rem 0.45rem;
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+    font-weight: 650;
+  }
+
+  .toc-link-level-3 {
+    margin-left: 1.48rem;
+    padding: 0.27rem 0.45rem 0.27rem 0.7rem;
+    font-size: 0.78rem;
+  }
+
+  .toc-link-level-4 {
+    margin-left: 2.35rem;
+    padding: 0.23rem 0.45rem 0.23rem 0.75rem;
+    font-size: 0.74rem;
+  }
+
+  .toc-link:hover,
+  .toc-link[aria-current='true'] {
+    background: var(--surface-hover);
+    border-left-color: var(--accent);
+    color: var(--accent-strong);
+  }
+
+  .toc-children {
+    display: grid;
+    gap: 0.05rem;
+    overflow: hidden;
+    max-height: 80rem;
+    opacity: 1;
+    padding: 0.05rem 0 0.25rem;
+    transition:
+      max-height 0.18s ease,
+      opacity 0.16s ease,
+      padding 0.18s ease;
+  }
+
+  .toc-section[data-collapsed] .toc-children {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    pointer-events: none;
+  }
+
+  .toc-grandchildren {
+    display: grid;
+    gap: 0.03rem;
+    padding-bottom: 0.1rem;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (max-width: 1020px) {
+    .floating-toc {
+      position: static;
+      max-height: 18rem;
+      margin-bottom: 2rem;
+    }
+  }
+</style>

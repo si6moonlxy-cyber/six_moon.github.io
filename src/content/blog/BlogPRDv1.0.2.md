@@ -56,10 +56,4 @@ tags:
 
 ![https://res.cloudinary.com/dn3exco8l/image/upload/v1778403264/six-moon-blog/blog/tags_select.png](https://res.cloudinary.com/dn3exco8l/image/upload/v1778403264/six-moon-blog/blog/tags_select.png)
 
-# 输出要求
-- 给出需要修改或新增的文件完整路径和代码。
-- 如果涉及配置修改（如 `astro.config.mjs`），请给出修改后的完整内容。
-- 提供简短的操作说明，确保改动后现有功能不受影响。
-- 所有占位符（如用户名、邮箱、抖音号）使用 `你的用户名` 等形式，方便我后续全局替换。
-
 # [版本一览](Blog%20PRD.md)

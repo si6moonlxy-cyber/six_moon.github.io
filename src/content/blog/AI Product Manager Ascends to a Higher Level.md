@@ -19,7 +19,8 @@ tags:
 
 ### 3. 其余基础知识框架 (待更新)
 - **[[Git operation tutorial|Git 仓库管理项目版本]]** -> 常见场景解决方案 **√**
-- **MCP 开源项目cc swith** -> claude code 接入 deepseek API
+- **AI全栈工程师的必修课** -> vibe coding 的艺术
+- **[[MCP tool tutorial|MCP 开源项目cc swith]]** -> claude code 接入 deepseek API **√**
 - **工作流与智能体的最优选择** -> 针对流程化纵向展开的workflow/横向并行的Agent
 - **针对Agent的特定context** -> 合理规范化使用Skill Creator范式vibe coding
 - **面对海量数据的token成本管理** -> 投机解码的贪心算法/KV Cash的宏观使用

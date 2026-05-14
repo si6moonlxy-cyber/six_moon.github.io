@@ -2,6 +2,7 @@
 title: Git 操作教学
 description: Git、GitHub 与 VS Code 可视化 Git 的入门说明和常见问题排查手册
 pubDate: 2026-05-12
+draft: false
 tags:
   - 项目
   - 想法
@@ -10,33 +11,6 @@ tags:
 
 > 适用对象：刚开始使用 Git、GitHub、VS Code 可视化 Git 的个人项目维护者。  
 > 推荐使用场景：个人博客、前端项目、文档项目、vibe coding 需要强版本管理的项目。
-
----
-
-## 目录
-
-### 基础概念
--  [1. Git 是什么](#1%20git%20是什么)
-- [2. Git 的核心概念](#2%20git%20的核心概念)
-### 搭建环境
-- [3. 第一次使用 Git 的基础配置](#3%20第一次使用%20git%20的基础配置)
-- [4. 创建或下载仓库](#4%20创建或下载仓库)
-- [5. 日常 Git 工作流](#5%20日常%20git%20工作流)
-- [6. VS Code 可视化 Git 操作](#6%20vs%20code%20可视化%20git%20操作)
-- [7. 使用 SSH 连接 GitHub](#7%20使用%20ssh%20连接%20github)
-### 进阶使用
-- [8. 分支的基本使用](#8%20分支的基本使用)
-- [9. 远程仓库 remote 的使用](#9%20远程仓库%20remote%20的使用)
-- [10. `.gitignore` 的使用](#10%20gitignore%20的使用)
-- [11. 常见错误与解决办法](#11%20常见错误与解决办法)
-### 常见故问题
-- [12. 常用命令速查表](#12%20常用命令速查表)
-- [13. 推荐的个人项目 Git 习惯](#13%20推荐的个人项目%20git%20习惯)
-### 项目实操
-- [附录：一次完整 SSH + GitHub 推送示例](#附录一次完整%20ssh%20github%20推送示例)
-- [附录：Git 命令和 VS Code 操作对照表](#附录git%20命令和%20vs%20code%20操作对照表)
-### 最简语法
-- [最简记忆版](#最简记忆版)
 
 ---
 
@@ -68,8 +42,7 @@ GitHub：远程仓库存放平台
 VS Code：编辑器，可以可视化操作 Git
 ```
 
-## [[#目录]]
- 
+
 ---
 
 
@@ -169,8 +142,7 @@ git commit -m "update blog"
 git push
 ```
 
-## [[#目录]]
- 
+
 ---
 
 
@@ -231,8 +203,7 @@ git config --global init.defaultBranch main
 
 以后新建仓库时，默认分支就是 `main`。
 
-## [[#目录]]
- 
+
 ---
 
 
@@ -309,8 +280,7 @@ git branch -M main
 git push -u origin main
 ```
 
-## [[#目录]]
- 
+
 ---
 
 
@@ -454,8 +424,6 @@ git push
 ```
 
 
-## [[#目录]]
- 
 ---
 
 
@@ -605,8 +573,7 @@ Ctrl + Shift + P
 
 这里可以看到 VS Code 实际执行的 Git 命令和报错。
 
-## [[#目录]]
- 
+
 ---
 
 
@@ -758,8 +725,7 @@ Host github.com
 ssh -T git@github.com
 ```
 
-## [[#目录]]
- 
+
 ---
 
 
@@ -853,8 +819,7 @@ main：稳定版本
 dev：开发版本
 ```
 
-## [[#目录]]
- 
+
 ---
 
 
@@ -912,8 +877,7 @@ git push
 git pull
 ```
 
-## [[#目录]]
- 
+
 ---
 
 
@@ -997,8 +961,7 @@ git commit -m "remove node_modules from git"
 git push
 ```
 
-## [[#目录]]
- 
+
 ---
 
 
@@ -1605,8 +1568,7 @@ git commit -m "update blog"
 git push
 ```
 
-## [[#目录]]
- 
+
 ---
 
 
@@ -1688,8 +1650,7 @@ cat ~/.ssh/id_ed25519.pub
 ssh -T git@github.com
 ```
 
-## [[#目录]]
- 
+
 ---
 
 
@@ -1804,8 +1765,7 @@ VS Code 可视化版：
 8. Push / Sync Changes
 ```
 
-## [[#目录]]
- 
+
 ---
 
 
@@ -1860,8 +1820,7 @@ git commit -m "update blog"
 git push
 ```
 
-## [[#目录]]
- 
+
 ---
 
 
@@ -1880,8 +1839,7 @@ git push
 | 切换分支 | `git switch branch` | 左下角分支名 |
 | 新建分支 | `git switch -c branch` | 左下角分支名 → Create new branch |
 
-## [[#目录]]
- 
+
 ---
 
 
@@ -1910,8 +1868,5 @@ VS Code 日常操作：
 Source Control → + → 写提交信息 → Commit → Push
 ```
 
-## [[#目录]]
 
 ---
-
- 
