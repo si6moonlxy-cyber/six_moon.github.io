@@ -1,5 +1,6 @@
 ---
 import FloatingToc from '../../components/FloatingToc.astro';
+import FloatingToc from '../../components/FloatingToc.astro';
 import Layout from '../../layouts/Layout.astro';
 import { render } from 'astro:content';
 import {
@@ -148,6 +149,12 @@ const articleShellClass = hasToc
     max-width: 100%;
     overflow-x: clip;
     overflow-wrap: break-word;
+  }
+  .prose :global(h1),
+  .prose :global(h2),
+  .prose :global(h3),
+  .prose :global(h4) {
+    scroll-margin-top: 5.5rem;
   }
   .prose :global(h1),
   .prose :global(h2),

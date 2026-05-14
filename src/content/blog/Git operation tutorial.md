@@ -969,7 +969,7 @@ git push
 
 ---
 
-### 11.1 `fatal: not a git repository`
+### 11.1 `fatal: not a git repository`(你当前目录不是 Git 仓库)
 
 报错：
 
@@ -1003,7 +1003,7 @@ git init
 
 ---
 
-### 11.2 `remote origin already exists`
+### 11.2 `remote origin already exists`(已经存在名为 `origin` 的远程仓库)
 
 报错：
 
@@ -1038,7 +1038,7 @@ git remote add origin git@github.com:username/my-blog.git
 
 ---
 
-### 11.3 `src refspec main does not match any`
+### 11.3 `src refspec main does not match any`(还没有任何 commit/当前分支不叫 `main`)
 
 报错：
 
@@ -1062,7 +1062,7 @@ git push -u origin main
 
 ---
 
-### 11.4 `Updates were rejected because the tip of your current branch is behind`
+### 11.4 `Updates were rejected because the tip of your current branch is behind`(远程仓库有你本地没有的提交)
 
 报错：
 
@@ -1105,7 +1105,7 @@ git push -u origin main --force-with-lease
 
 ---
 
-### 11.5 `Pulling is not possible because you have unmerged files`
+### 11.5 `Pulling is not possible because you have unmerged files`(上一次合并冲突还没有处理完)
 
 报错：
 
@@ -1153,8 +1153,7 @@ git merge --abort
 
 ---
 
-### 11.6 `There is no merge to abort`
-
+### 11.6 `There is no merge to abort`(当前并没有处在合并状态。)
 报错：
 
 ```text
@@ -1177,7 +1176,7 @@ git status
 
 ---
 
-### 11.7 `Permission denied (publickey)`
+### 11.7 `Permission denied (publickey)`(SSH key 没配置好)
 
 报错：
 
@@ -1217,7 +1216,7 @@ cat ~/.ssh/id_ed25519.pub
 
 ---
 
-### 11.8 `Host key verification failed`
+### 11.8 `Host key verification failed`(SSH 主机验证异常)
 
 报错：
 
@@ -1257,7 +1256,7 @@ yes
 
 ---
 
-### 11.9 `Failed to connect to github.com port 443`
+### 11.9 `Failed to connect to github.com port 443`(无法连接 GitHub 的 HTTPS 端口)
 
 报错：
 
@@ -1301,7 +1300,7 @@ Host github.com
 
 ---
 
-### 11.10 `Failed to connect to 127.0.0.1 port 7890`
+### 11.10 `Failed to connect to 127.0.0.1 port 7890`(Git 被设置成走本地代理)
 
 报错：
 
@@ -1344,7 +1343,7 @@ git config --global https.proxy http://127.0.0.1:7890
 
 ---
 
-### 11.11 `Please specify which branch you want to merge with`
+### 11.11 `Please specify which branch you want to merge with`(本地分支还没有和远程分支建立追踪关系)
 
 报错：
 
@@ -1377,7 +1376,7 @@ git push
 
 ---
 
-### 11.12 `nothing to commit, working tree clean`
+### 11.12 `nothing to commit, working tree clean`(当前没有可提交的修改)
 
 输出：
 
@@ -1406,7 +1405,7 @@ git push
 
 ---
 
-### 11.13 `detached HEAD`
+### 11.13 `detached HEAD`(你当前不在正常分支上)
 
 输出：
 
@@ -1529,7 +1528,22 @@ git reset --hard HEAD~1
 
 ---
 
-### 11.19 想查看历史记录
+### 11.19 想回退版本
+
+❌ 不改变，只追加新提交
+```bash
+git revert HEAD && git push
+```
+
+✅ 彻底删除历史：
+
+```bash
+git reset --hard HEAD~1 && git push --force-with-lease
+```
+
+---
+
+### 11.20 想查看历史记录
 
 ```bash
 git log
@@ -1549,7 +1563,7 @@ git log --oneline --graph --all
 
 ---
 
-### 11.20 换电脑后如何继续项目
+### 11.21 换电脑后如何继续项目
 
 在新电脑上：
 
