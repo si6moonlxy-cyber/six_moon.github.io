@@ -1,5 +1,5 @@
 ---
-title: CC-Switch投入生成跨平台MCP工具
+title: CC-Switch投入生产跨平台MCP工具
 pubDate: 2026-05-13
 draft: false
 description: 利用集成MCP工具CC-Switch使得Claude code 接入 DeepSeek API实现 图文版
@@ -14,7 +14,7 @@ tags:
 ![091a7973ed4bfbc686cbd237dd45c9dd.png](https://res.cloudinary.com/dn3exco8l/image/upload/v1778711034/six-moon-blog/blog/f03455934cf4a2026143912392951ed6.png)
 ### 3. 下滑找到安装文档以及版本库
 ![c253d6da2e2e55b8092a191923e601ce.png](https://res.cloudinary.com/dn3exco8l/image/upload/v1778711099/six-moon-blog/blog/68d01d6d074b86c39fc5961809454b50.png)
-### 4. 下载对应安装包 , 开箱即用 , 单机即可迅速切换
+### 4. 下载对应安装包 , 开箱即用 , 单击即可迅速切换
 ![image.png](https://res.cloudinary.com/dn3exco8l/image/upload/v1778711517/six-moon-blog/blog/fb754adcc230bec4433663c6f00a2097.png)
 ### 5. 打开运行 , 并且配置相关属性
 #### 1. 选择claude - deepseek

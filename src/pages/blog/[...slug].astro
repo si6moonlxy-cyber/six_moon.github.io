@@ -1,6 +1,5 @@
 ---
 import FloatingToc from '../../components/FloatingToc.astro';
-import FloatingToc from '../../components/FloatingToc.astro';
 import Layout from '../../layouts/Layout.astro';
 import { render } from 'astro:content';
 import {
@@ -156,12 +155,6 @@ const articleShellClass = hasToc
   .prose :global(h4) {
     scroll-margin-top: 5.5rem;
   }
-  .prose :global(h1),
-  .prose :global(h2),
-  .prose :global(h3),
-  .prose :global(h4) {
-    scroll-margin-top: 5.5rem;
-  }
   .prose h2 {
     margin-top: 2rem;
     margin-bottom: 1rem;
@@ -224,6 +217,9 @@ const articleShellClass = hasToc
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
+  .prose :global(p:has(img[data-obsidian-width])) {
+    overflow-x: visible;
+  }
   .prose :global(img) {
     display: block;
     width: auto;
@@ -234,6 +230,13 @@ const articleShellClass = hasToc
     border-radius: 14px;
     box-shadow: var(--image-shadow);
     object-fit: contain;
+  }
+  .prose :global(img[data-obsidian-width]) {
+    display: inline-block;
+    width: min(var(--obsidian-image-width), 100%);
+    max-width: 100%;
+    margin: 0.35rem 0.4rem 0.35rem 0;
+    vertical-align: top;
   }
   .prose :global(img.wide-image) {
     max-width: min(100%, 1080px);

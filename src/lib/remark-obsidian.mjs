@@ -7,6 +7,7 @@ const IMAGE_CATEGORY_BY_CONTENT_DIR = {
   template: 'template',
   craft: 'craft',
 };
+const OBSIDIAN_IMAGE_SIZE = /^(\d{1,4})(?:x(\d{1,4}))?$/i;
 
 function splitTarget(rawValue) {
   const pipeIndex = rawValue.indexOf('|');
@@ -117,6 +118,57 @@ function imageAlt(target, label) {
   return label;
 }
 
+function imageSize(label) {
+  const match = label?.trim().match(OBSIDIAN_IMAGE_SIZE);
+
+  if (!match) {
+    return null;
+  }
+
+  return {
+    width: Number(match[1]),
+    height: match[2] ? Number(match[2]) : undefined,
+  };
+}
+
+function mergeStyle(existingStyle, nextStyle) {
+  return [existingStyle, nextStyle].filter(Boolean).join(' ');
+}
+
+function applyImageSize(node, size) {
+  if (!size?.width) {
+    return;
+  }
+
+  const hProperties = node.data?.hProperties ?? {};
+
+  node.data = {
+    ...node.data,
+    hProperties: {
+      ...hProperties,
+      width: size.width,
+      'data-obsidian-width': String(size.width),
+      style: mergeStyle(hProperties.style, `--obsidian-image-width: ${size.width}px;`),
+    },
+  };
+}
+
+function normalizeMarkdownImage(node) {
+  if (node.type !== 'image' || !node.alt?.includes('|')) {
+    return;
+  }
+
+  const { target, label } = splitTarget(node.alt);
+  const size = imageSize(label);
+
+  if (!size) {
+    return;
+  }
+
+  node.alt = baseName(target);
+  applyImageSize(node, size);
+}
+
 function transformText(value, context) {
   const nodes = [];
   let cursor = 0;
@@ -139,11 +191,14 @@ function transformText(value, context) {
     if (!target) {
       nodes.push({ type: 'text', value: token });
     } else if (embedMarker) {
-      nodes.push({
+      const imageNode = {
         type: 'image',
         url: imageUrl(target, context),
         alt: imageAlt(target, label),
-      });
+      };
+
+      applyImageSize(imageNode, imageSize(label));
+      nodes.push(imageNode);
     } else {
       nodes.push({
         type: 'link',
@@ -185,7 +240,9 @@ function transformChildren(node, context) {
         node.children.splice(index, 1, ...replacement);
         index += replacement.length - 1;
       }
-    } else if (!['link', 'image', 'inlineCode', 'code'].includes(child.type)) {
+    } else if (child.type === 'image') {
+      normalizeMarkdownImage(child);
+    } else if (!['link', 'inlineCode', 'code'].includes(child.type)) {
       transformChildren(child, context);
     }
   }
@@ -194,5 +251,6 @@ function transformChildren(node, context) {
 export function remarkObsidian() {
   return function transformer(tree, file) {
     transformChildren(tree, contentContext(file));
+    normalizeMarkdownImage(tree);
   };
 }
