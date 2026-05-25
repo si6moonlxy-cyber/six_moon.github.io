@@ -1,13 +1,12 @@
 ---
 title: AI Agent 知识图谱排序
-description: AI Agent 与 LLM 知识图谱的 P0-P2 优先级排序
+description: AI Agent 相关知识图谱的优先级排序
 pubDate: 2026-05-12
 draft: false
 tags:
   - 想法
-  - 项目
 ---
-# AI Agent & LLM 面试知识图谱
+# AI Agent 知识图谱
 > 按**学习投入产出比**分级排行，从 P0（最高性价比）→ P2（储备级）
 > 格式：知识点 → 解析 → 应用场景 → 学习投入产出比
 
@@ -1117,4 +1116,7 @@ tags:
 
 ---
 
-## [[AI Product Manager Ascends to a Higher Level|学习路线]]
+## [[AI-Product-Manager-Ascends-to-a-Higher-Level|学习路线]]
+
+---
+*Written By Six_moon*

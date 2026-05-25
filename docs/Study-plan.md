@@ -2,7 +2,7 @@
 title: 学习计划
 description: AI 产品经理方向的阶段学习计划
 pubDate: 2026-05-12
-draft: false
+draft: true
 tags:
   - 想法
 ---

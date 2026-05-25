@@ -1,11 +1,16 @@
 ---
-title: CC-Switch投入生产跨平台MCP工具
+title: Claude code 与 CC-Switch的使用
 pubDate: 2026-05-13
 draft: false
-description: 利用集成MCP工具CC-Switch使得Claude code 接入 DeepSeek API实现 图文版
+description: 利用集成工具CC-Switch使得Claude code 接入 DeepSeek API实现 图文版
 tags:
   - 项目
   - 想法
+---
+# Claude code 和 Figma 的碰撞艺术
+>适用人群:没有Claude官方账号但是需要使用Claude CLI的人群
+>推荐使用场景:初次使用Claude,Claude接入DeepSeek,对MCP工具有强需求的场景
+
 ---
 ## 配置cc - switch
 ### 1. 打开 cc-switch的github官方仓库 : [github/cc-switch](https://github.com/farion1231/cc-switch)
@@ -53,3 +58,6 @@ tags:
 - DeepSeek - V4 - Pro[1m] 显示当前API运营商,cc可以一键切换
 - 上下文拥有1M
 - Skills为当前挂载的技能
+
+---
+*Written By Six_moon*
