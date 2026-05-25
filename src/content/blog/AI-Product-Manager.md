@@ -1,11 +1,10 @@
 ---
-title: AI Product Manager 知识库
-description: AI 产品经理必须掌握的相关基础知识(正在更新)
+title: AI PM 储备知识库
+description: 目前已经掌握的相关基础知识(正在更新)
 pubDate: 2026-05-12
 draft: false
 tags:
   - 想法
-  - 项目
 ---
 
 # AI Product Manager 知识库
@@ -171,4 +170,7 @@ tags:
 
 
 ---
-## [[AI Product Manager Ascends to a Higher Level|学习路线]]
+## [[AI-Product-Manager-Ascends-to-a-Higher-Level|学习路线]]
+
+---
+*Written By Six_moon*
