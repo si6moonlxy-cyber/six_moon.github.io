@@ -4,7 +4,6 @@ pubDate: 2026-05-13
 draft: false
 description: 利用集成工具CC-Switch使得Claude code 接入 DeepSeek API实现 图文版
 tags:
-  - 项目
   - 想法
 ---
 # Claude code 和 Figma 的碰撞艺术

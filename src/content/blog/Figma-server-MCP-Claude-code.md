@@ -57,7 +57,7 @@ tags:
 ![badc5f7486fd5a4f23977e58271a627e.png](https://res.cloudinary.com/dn3exco8l/image/upload/v1779718524/six-moon-blog/blog/6a43141ff4777ac0dd9bd038526299a0.png)
 
 ### 检验当前模式
-1. CLI启动Claude
+1. CLI启动Claude**
 2. 直接自然语言询问
 ![a722a45b8debea29d5fc6fc0c64ba97a.png](https://res.cloudinary.com/dn3exco8l/image/upload/v1779718581/six-moon-blog/blog/139da666459feb74b4bb386133264ba4.png)
 
@@ -142,7 +142,7 @@ claude
 
 直接问 Claude：
 
-> 读取我的 Figma 文件 [file key]，告诉我这个设计稿里有哪些页面。
+> 读取我的 Figma 文件 `[file key]`，告诉我这个设计稿里有哪些页面。
 
 如果配置正确，Claude 会调用 MCP 工具去 Figma 拉数据，然后告诉你结果。
 ![0efd434556a2b9591b227b24d204b53d.png](https://res.cloudinary.com/dn3exco8l/image/upload/v1779753527/six-moon-blog/blog/33c6f78e117b9bcb3d166dfe0bb1ad68.png)
@@ -172,7 +172,7 @@ claude
 
 你也可以在会话里直接粘贴范式，Claude 会记住当前会话的偏好。
 
-如果范式需要长期复用或者跟随项目，可以在项目根目录的 CLAUDE.md 文件中配置工具使用方式，使得 Claude 能够自动理解你的设计规范并关联到 Figma 组件。
+如果范式需要长期复用或者跟随项目，可以在项目根目录的 **CLAUDE.md** 文件中配置工具使用方式，使得 Claude 能够自动理解你的设计规范并关联到 Figma 组件。
 
 **PS:范式生成基本上可以通过GPT或者Codex一键生成Claude的设计范式**
 
@@ -184,12 +184,13 @@ claude
 
 例子：
 
-> 参照 Figma 文件 [file key] 中的登录页面设计，按我的范式生成一个可交互的 HTML 原型。
+> 参照 Figma 文件`[file key]`中的登录页面设计，按我的范式生成一个可交互的 HTML 原型。
 
 Claude 会：
 1. 通过 MCP 读取 Figma 中的图层、颜色、文字、间距
 2. 根据你的范式转换成代码
 3. 直接在当前目录生成原型文件
+![image.png|588](https://res.cloudinary.com/dn3exco8l/image/upload/v1779840175/six-moon-blog/blog/8154a8fee92fee158a8d4c00317477b1.png)
 
 
 打开 `.html` 文件就能在浏览器里看到效果，可以直接拿去演示或评审。
