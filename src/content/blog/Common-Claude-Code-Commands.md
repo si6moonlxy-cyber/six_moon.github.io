@@ -6,8 +6,6 @@ draft: false
 tags:
   - 想法
 ---
-
-
 # Claude code 常用`/`指令
 >适用人群:使用Claude加入工作流中的人
 >推荐使用场景:需要使用Claude原生的**多任务/代码隔离/压缩上下文**等
