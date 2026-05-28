@@ -6,7 +6,7 @@ description: 利用集成工具CC-Switch使得Claude code 接入 DeepSeek API实
 tags:
   - 想法
 ---
-# Claude code 和 Figma 的碰撞艺术
+# Claude code 与 CC-Switch 的完美结合
 >适用人群:没有Claude官方账号但是需要使用Claude CLI的人群
 >推荐使用场景:初次使用Claude,Claude接入DeepSeek,对MCP工具有强需求的场景
 
