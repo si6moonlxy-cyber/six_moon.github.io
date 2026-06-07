@@ -170,7 +170,7 @@ tags:
 
 
 ---
-## [[AI-Product-Manager-Ascends-to-a-Higher-Level|学习路线]]
+## [[AI-PM-Ascends-to-a-Higher-Level|学习路线]]
 
 ---
 *Written By Six_moon*
