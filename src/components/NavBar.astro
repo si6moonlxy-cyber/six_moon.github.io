@@ -1,0 +1,62 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import TocThumbnail from './TocThumbnail.astro';
+---
+
+<nav class="navbar">
+  <div class="nav-left">
+    <ThemeToggle />
+    <TocThumbnail />
+    <a href="/" class="nav-brand">six_moon 的博客</a>
+  </div>
+  <div class="nav-links">
+    <a href="/blog">博客</a>
+    <a href="/about">关于</a>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--nav-bg);
+    color: var(--nav-text);
+  }
+
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .nav-brand {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--nav-text);
+    text-decoration: none;
+  }
+
+  .nav-links a {
+    color: var(--nav-text);
+    text-decoration: none;
+    margin-left: 1.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .navbar {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .nav-links a {
+      margin-left: 0;
+      margin-right: 1.25rem;
+    }
+  }
+</style>

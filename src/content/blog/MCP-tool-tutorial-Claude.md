@@ -71,6 +71,3 @@ curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del in
 **输入/context 测试当前上下文**
 ![image.png|582](https://res.cloudinary.com/dn3exco8l/image/upload/v1780842842/six-moon-blog/blog/7e19c722fe90c634ee0290ec3d2257ac.png)
 **显示Model: DeepSeek-V4-Pro[1m]即配置成功**
-
----
-*Written By Six_moon*

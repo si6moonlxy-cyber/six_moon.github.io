@@ -56,7 +56,15 @@ tags:
 
 ![https://res.cloudinary.com/dn3exco8l/image/upload/v1778403264/six-moon-blog/blog/tags_select.png](https://res.cloudinary.com/dn3exco8l/image/upload/v1778403264/six-moon-blog/blog/tags_select.png)
 
-# [[Blog-PRDs|版本一览]]
-
 ---
-*Written By Six_moon*
+
+# 设计决策
+
+| # | 决策 |
+|---|------|
+| 1 | 深色/浅色切换用 CSS 变量 + localStorage，不用 Tailwind dark mode |
+| 2 | 主题切换按钮在导航栏左侧、博客标题前 |
+| 3 | Email 用 clipboard copy，不用 mailto 链接 |
+| 4 | 图片路径 `/images/{集合名}/` 由 content 目录自动推断 |
+
+# [[Blog-PRDs|版本一览]]

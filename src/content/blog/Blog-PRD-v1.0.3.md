@@ -34,7 +34,17 @@ tags:
 - 使用 CSS 变量继承现有深浅色主题，不引入大型 UI 库
 ![image.png](https://res.cloudinary.com/dn3exco8l/image/upload/v1778715531/six-moon-blog/blog/759aa68b067a0de1f086cad893e8c6c9.png)
 ![image.png](https://res.cloudinary.com/dn3exco8l/image/upload/v1778715533/six-moon-blog/blog/e5a864d68f964b9d011e01cd3b1ecfd1.png)
-# [[Blog-PRDs|版本一览]]
 
 ---
-*Written By Six_moon*
+# 设计决策
+
+| # | 决策 |
+|---|------|
+| 1 | TOC 放左侧侧边栏，使用 CSS Grid + sticky 定位（非 fixed 浮层） |
+| 2 | h2-h3-h4 树状结构，有子标题时默认折叠 |
+| 3 | 折叠按钮控制子目录展开/收起，点击标题文本跳转章节 |
+| 4 | IntersectionObserver 高亮当前章节，并自动展开所在 h2 分组 |
+| 5 | 无 h2-h4 标题的文章不渲染 TOC 侧栏，保持普通文章宽度 |
+| 6 | 移动端 TOC 在正文上方静态展示（非 fixed 浮层） |
+
+# [[Blog-PRDs|版本一览]]

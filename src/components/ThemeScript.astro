@@ -1,0 +1,15 @@
+<script is:inline>
+  (() => {
+    const k = 'six-moon-theme';
+    const btn = document.querySelector('[data-theme-toggle]');
+    const apply = (t) => {
+      document.documentElement.dataset.theme = t;
+      localStorage.setItem(k, t);
+      btn?.setAttribute('aria-pressed', String(t === 'dark'));
+    };
+    btn?.addEventListener('click', () => {
+      apply(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    apply(document.documentElement.dataset.theme || 'light');
+  })();
+</script>

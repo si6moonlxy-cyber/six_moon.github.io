@@ -293,6 +293,3 @@ Skill-Analysis.md
 只要能理解，就能维护。
 
 而只要能维护，Agent 的长期记忆就不再是黑盒。
-
----
-*Written By Six_moon*

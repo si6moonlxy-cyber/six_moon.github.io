@@ -1,0 +1,106 @@
+/* ===== 浅色主题 ===== */
+:root {
+  color-scheme: light;
+  --page-bg: #ffffff;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+  --border-color: #e5e7eb;
+  --surface-bg: #ffffff;
+  --surface-soft: #f3f4f6;
+  --surface-hover: #eef2ff;
+  --font-body: "Segoe UI", "Microsoft YaHei", "微软雅黑", system-ui, -apple-system,
+    BlinkMacSystemFont, Arial, sans-serif;
+  --font-code: Consolas, "Microsoft YaHei UI", "Microsoft YaHei", "微软雅黑",
+    "Courier New", monospace;
+  --accent: #667eea;
+  --accent-strong: #4338ca;
+  --accent-soft: #e0e7ff;
+  --code-bg: #f6f8fa;
+  --code-text: #24292f;
+  --code-block-bg: #111827;
+  --code-block-text: #e5e7eb;
+  --table-header-bg: #f8fafc;
+  --table-row-alt-bg: #fbfdff;
+  --image-border: rgba(15, 23, 42, 0.12);
+  --image-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+  --nav-bg: #f8fafc;
+  --nav-text: #111827;
+  --nav-border: rgba(0, 0, 0, 0.12);
+  --nav-button-bg: rgba(0, 0, 0, 0.06);
+  --nav-button-hover-bg: rgba(0, 0, 0, 0.1);
+  --shadow-soft: 0 4px 14px rgba(31, 41, 55, 0.08);
+}
+
+/* ===== 深色主题 ===== */
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --page-bg: #111827;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-muted: #9ca3af;
+  --border-color: #374151;
+  --surface-bg: #1f2937;
+  --surface-soft: #273449;
+  --surface-hover: #312e81;
+  --accent: #a5b4fc;
+  --accent-strong: #c7d2fe;
+  --accent-soft: #312e81;
+  --code-bg: #273449;
+  --code-text: #e5e7eb;
+  --code-block-bg: #020617;
+  --code-block-text: #e2e8f0;
+  --table-header-bg: #273449;
+  --table-row-alt-bg: rgba(255, 255, 255, 0.03);
+  --image-border: rgba(148, 163, 184, 0.24);
+  --image-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+  --nav-bg: #030712;
+  --nav-text: #f9fafb;
+  --nav-border: rgba(255, 255, 255, 0.18);
+  --nav-button-bg: rgba(255, 255, 255, 0.08);
+  --nav-button-hover-bg: rgba(255, 255, 255, 0.16);
+  --shadow-soft: 0 4px 18px rgba(0, 0, 0, 0.28);
+}
+
+/* ===== 全局 Reset ===== */
+html {
+  scrollbar-gutter: stable;
+  scroll-padding-top: 4.5rem;
+  background: var(--page-bg);
+  font-family: var(--font-body);
+  line-height: 1.75;
+  -webkit-text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1.75;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+/* ===== 等宽字体 ===== */
+pre,
+code,
+kbd,
+samp,
+.astro-code,
+.astro-code code,
+.astro-code span,
+.expressive-code,
+.expressive-code pre,
+.expressive-code code,
+.expressive-code span,
+pre code {
+  font-family: var(--font-code);
+}

@@ -49,7 +49,15 @@ tags:
 
 ![https://res.cloudinary.com/dn3exco8l/image/upload/v1778403253/six-moon-blog/blog/upload-img-obs-cloud.png](https://res.cloudinary.com/dn3exco8l/image/upload/v1778403253/six-moon-blog/blog/upload-img-obs-cloud.png)
 
-# [[Blog-PRDs|版本一览]]
-
 ---
-*Written By Six_moon*
+
+# 设计决策
+
+| # | 决策 |
+|---|------|
+| 1 | About 页复用现有 Layout 组件，不单独建页面壳 |
+| 2 | Obsidian 语法用自定义 remark 插件转换，不用 astro-loader |
+| 3 | 标签筛选用独立 SSG 页面 `/tags/:tag/`，不用前端 JS 筛选 |
+| 4 | 图片存 Cloudinary 图床，不在仓库内存放 |
+
+# [[Blog-PRDs|版本一览]]

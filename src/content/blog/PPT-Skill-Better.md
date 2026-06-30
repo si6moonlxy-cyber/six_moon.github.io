@@ -73,6 +73,3 @@ npx skills add https://github.com/op7418/guizang-ppt-skill --skill guizang-ppt-s
 
 总体来说还是不错的,唯一花费时间的就是投喂的元文档;
 但充其量算是个人做ppt的台本迁移
-
----
-*Written By Six_moon*

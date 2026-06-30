@@ -6,7 +6,6 @@ draft: false
 tags:
   - 想法
 ---
-
 # 目前计划 : 三个月内掌握成熟的一站式落地的AI开发全栈技术
 
 ---
@@ -24,11 +23,10 @@ tags:
 - **[[Figma-server-MCP-Claude-code|Claude & Figma的碰撞]]** -> vibe Design 的艺术 **√**
 - **[[MCP-tool-tutorial-Claude|MCP 开源项目cc Switch]]** -> Claude code 接入 Deepseek API **√**
 - **[[Common-Claude-Code-Commands|小白也能学会的Claude code]]** -> Claude常用命令汇总(15pcs) **√**
+- **[[MCP-tool-tutorial-Codex|MCP 开源项目codex pp]]** -> 配置Codex 中转API **√**
+- **[[|小白也能学会的Codex]]** -> Claude常用命令汇总(15pcs) **(正在奋笔疾书ing)**
 - **"[[Using-Skills-in-Production|外挂"的真正用法!]]** -> Skills真正投入生成并使用 **(正在奋笔疾书ing)**
 - **[[LMS-Local-Memory-Skills|?!本地记忆系统?! 强强!]]** -> LMS 本地记忆skills,面向新手的一款知识库部署 **√**
 - **[[PPT-Skill-Better|简单快捷的PPT生成]]** -> 使用已配置的PPT Skill生成 **√**
 - **工作流与智能体的最优选择** -> 针对流程化纵向展开的workflow/横向并行的Agent **(正在筹备)**
 - **针对Agent的特定context** -> 合理规范化使用Skill Creator范式vibe coding **(正在筹备)**
-
----
-*Written By Six_moon*

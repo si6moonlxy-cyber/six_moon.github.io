@@ -8,7 +8,6 @@ tags:
 ---
 
 # AI Product Manager 知识库
-
 > AI PM 必备技术知识库，涵盖 LLM 基础、Prompt Engineering、AI Agent、RAG 四大模块。
 
 ---
@@ -171,6 +170,3 @@ tags:
 
 ---
 ## [[AI-PM-Ascends-to-a-Higher-Level|学习路线]]
-
----
-*Written By Six_moon*

@@ -1,4 +1,5 @@
 ---
+import '../../styles/prose.css';
 import FloatingToc from '../../components/FloatingToc.astro';
 import Layout from '../../layouts/Layout.astro';
 import { render } from 'astro:content';
@@ -28,20 +29,12 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content, headings } = await render(post);
-const hasToc = headings.some((heading) => heading.depth >= 2 && heading.depth <= 4);
-const articleShellClass = hasToc
-  ? 'article-shell'
-  : 'article-shell article-shell--without-toc';
 ---
 
 <Layout title={post.data.title} description={post.data.description} mainClass="article-main">
-  <div class={articleShellClass}>
-    {hasToc && (
-      <aside class="article-toc" aria-label="文章侧边目录">
-        <FloatingToc headings={headings} />
-      </aside>
-    )}
+  <FloatingToc headings={headings} />
 
+  <div class="article-shell article-shell--without-toc">
     <article class="blog-post">
       <header>
         <h1>{post.data.title}</h1>
@@ -63,34 +56,19 @@ const articleShellClass = hasToc
           </div>
         )}
       </header>
-      
+
       <div class="prose">
         <Content />
       </div>
-      
-      <footer>
-        <a href="/blog" class="back-link">← 返回博客列表</a>
-      </footer>
+
+      <hr class="article-divider" />
+      <p class="article-signature">Written By Six_moon</p>
     </article>
   </div>
 </Layout>
 
 <style>
   .article-shell {
-    display: grid;
-    grid-template-columns: minmax(13.5rem, 16rem) minmax(0, 1fr);
-    gap: clamp(2rem, 4vw, 4rem);
-    align-items: stretch;
-  }
-
-  .article-toc {
-    min-width: 0;
-    position: sticky;
-    top: 5.5rem;
-    align-self: start;
-  }
-
-  .article-shell--without-toc {
     display: block;
     max-width: 960px;
     margin: 0 auto;
@@ -102,16 +80,19 @@ const articleShellClass = hasToc
     max-width: 960px;
     margin: 0 auto;
   }
+
   header {
     margin-bottom: 3rem;
     padding-bottom: 2rem;
     border-bottom: 2px solid var(--border-color);
   }
+
   h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
     line-height: 1.2;
   }
+
   .post-meta {
     display: flex;
     gap: 1rem;
@@ -120,14 +101,17 @@ const articleShellClass = hasToc
     font-size: 0.6825rem;
     margin-bottom: 1rem;
   }
+
   .updated {
     color: var(--text-muted);
   }
+
   .tags {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
   }
+
   .tag {
     background: var(--surface-soft);
     padding: 0.25rem 0.75rem;
@@ -136,194 +120,25 @@ const articleShellClass = hasToc
     color: var(--text-secondary);
     text-decoration: none;
   }
+
   .tag:hover {
     background: var(--surface-hover);
     color: var(--accent-strong);
   }
-  .prose {
-    color: var(--text-primary);
-    font-size: 1.0625rem;
-    line-height: 1.85;
-    min-width: 0;
-    max-width: 100%;
-    overflow-x: clip;
-    overflow-wrap: break-word;
-  }
-  .prose :global(h1),
-  .prose :global(h2),
-  .prose :global(h3),
-  .prose :global(h4) {
-    scroll-margin-top: 5.5rem;
-  }
-  .prose h2 {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-  .prose h3 {
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
-  }
-  .prose p {
-    margin-bottom: 1.5rem;
-  }
-  .prose :global(ul),
-  .prose :global(ol) {
-    padding-left: 1.5rem;
-    margin: 0 0 1.5rem;
-  }
-  .prose :global(li) {
-    margin-bottom: 0.45rem;
-  }
-  .prose code {
-    background: var(--code-bg);
-    color: var(--code-text);
-    border: 1px solid var(--border-color);
-    padding: 0.12rem 0.35rem;
-    border-radius: 0.35rem;
-    font-family: var(--font-code);
-    font-size: 0.92em;
-    white-space: break-spaces;
-  }
-  .prose :global(pre) {
-    background: var(--code-block-bg);
-    color: var(--code-block-text);
-    padding: 1.1rem 1.25rem;
-    border: 1px solid var(--border-color);
-    border-radius: 0.6rem;
-    overflow-x: auto;
-    max-width: 100%;
-    margin: 0 0 1.5rem;
-    line-height: 1.35;
-    tab-size: 4;
-    box-shadow: var(--shadow-soft);
-    -webkit-overflow-scrolling: touch;
-  }
-  .prose :global(pre code),
-  .prose :global(.astro-code code),
-  .prose :global(.astro-code span) {
-    background: transparent;
+
+  .article-divider {
+    margin: 2.5rem 0 0.8rem;
     border: 0;
-    padding: 0;
-    color: inherit;
-    font-family: "Cascadia Mono", "Cascadia Code", "SFMono-Regular", Consolas,
-      "Microsoft YaHei Mono", NSimSun, monospace;
-    font-size: 0.755rem;
-    line-height: inherit;
-    tab-size: 4;
-    font-variant-ligatures: none;
-    font-kerning: none;
-    white-space: pre;
+    border-top: 1px solid var(--border-color);
   }
-  .prose :global(p),
-  .prose :global(figure) {
-    max-width: 100%;
-  }
-  .prose :global(p:has(img)),
-  .prose :global(figure:has(img)) {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  .prose :global(p:has(img[data-obsidian-width])) {
-    overflow-x: visible;
-  }
-  .prose :global(img) {
-    display: block;
-    width: auto;
-    max-width: min(100%, 960px);
-    height: auto;
-    margin: 1.75rem auto;
-    border: 1px solid var(--image-border);
-    border-radius: 14px;
-    box-shadow: var(--image-shadow);
-    object-fit: contain;
-  }
-  .prose :global(img[data-obsidian-width]) {
-    display: inline-block;
-    width: min(var(--obsidian-image-width), 100%);
-    max-width: 100%;
-    margin: 0.35rem 0.4rem 0.35rem 0;
-    vertical-align: top;
-  }
-  .prose :global(img.wide-image) {
-    max-width: min(100%, 1080px);
-  }
-  .prose :global(img.small-image) {
-    max-width: min(100%, 560px);
-  }
-  .prose :global(table) {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: auto;
-    border-collapse: collapse;
-    border-spacing: 0;
-    margin: 1.75rem 0;
-    font-size: 0.96rem;
-    line-height: 1.6;
-    -webkit-overflow-scrolling: touch;
-  }
-  .prose :global(th),
-  .prose :global(td) {
-    border: 1px solid var(--border-color);
-    padding: 0.7rem 0.9rem;
-    vertical-align: top;
-    min-width: 7.5rem;
-  }
-  .prose :global(th) {
-    background: var(--table-header-bg);
-    color: var(--text-primary);
+
+  .article-signature {
+    margin: 0;
+    text-align: right;
+    font-family: var(--font-code);
     font-weight: 700;
-    text-align: left;
-  }
-  .prose :global(tr:nth-child(even) td) {
-    background: var(--table-row-alt-bg);
-  }
-  .prose a {
-    color: var(--accent-strong);
-    font-weight: 500;
-    text-decoration-line: underline;
-    text-decoration-color: var(--accent);
-    text-decoration-thickness: 0.08em;
-    text-underline-offset: 0.18em;
-    transition:
-      color 0.2s,
-      text-decoration-color 0.2s,
-      background-color 0.2s;
-  }
-  .prose a:hover {
-    color: var(--accent);
-    background: var(--accent-soft);
-    text-decoration-color: currentColor;
-  }
-  .prose blockquote {
-    border-left: 4px solid var(--accent);
-    padding-left: 1rem;
-    margin: 1.5rem 0;
+    font-style: italic;
+    font-size: 0.85rem;
     color: var(--text-muted);
-  }
-  footer {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 2px solid var(--border-color);
-  }
-  .back-link {
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: 500;
-  }
-  .back-link:hover {
-    text-decoration: underline;
-  }
-
-  @media (max-width: 1020px) {
-    .article-shell {
-      display: block;
-      max-width: 960px;
-      margin: 0 auto;
-    }
-
-    .article-toc {
-      position: static;
-    }
   }
 </style>

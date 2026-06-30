@@ -1,0 +1,195 @@
+/* ===== 文章正文排版 ===== */
+.prose {
+  color: var(--text-primary);
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: clip;
+  overflow-wrap: break-word;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  scroll-margin-top: 5.5rem;
+}
+
+.prose h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.prose h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose p {
+  margin-bottom: 1.5rem;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.5rem;
+  margin: 0 0 1.5rem;
+}
+
+.prose li {
+  margin-bottom: 0.45rem;
+}
+
+/* ===== 行内代码 ===== */
+.prose code {
+  background: var(--code-bg);
+  color: var(--code-text);
+  border: 1px solid var(--border-color);
+  padding: 0.12rem 0.35rem;
+  border-radius: 0.35rem;
+  font-family: var(--font-code);
+  font-size: 0.92em;
+  white-space: break-spaces;
+}
+
+/* ===== 代码块 ===== */
+.prose pre {
+  background: var(--code-block-bg);
+  color: var(--code-block-text);
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.6rem;
+  overflow-x: auto;
+  max-width: 100%;
+  margin: 0 0 1.5rem;
+  line-height: 1.35;
+  tab-size: 4;
+  box-shadow: var(--shadow-soft);
+  -webkit-overflow-scrolling: touch;
+}
+
+.prose pre code,
+.prose .astro-code code,
+.prose .astro-code span {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font-family: "Cascadia Mono", "Cascadia Code", "SFMono-Regular", Consolas,
+    "Microsoft YaHei Mono", NSimSun, monospace;
+  font-size: 0.755rem;
+  line-height: inherit;
+  tab-size: 4;
+  font-variant-ligatures: none;
+  font-kerning: none;
+  white-space: pre;
+}
+
+.prose p,
+.prose figure {
+  max-width: 100%;
+}
+
+.prose p:has(img),
+.prose figure:has(img) {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.prose p:has(img[data-obsidian-width]) {
+  overflow-x: visible;
+}
+
+/* ===== 图片 ===== */
+.prose img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin: 1.75rem auto;
+  border: 1px solid var(--image-border);
+  border-radius: 14px;
+  box-shadow: var(--image-shadow);
+  object-fit: contain;
+}
+
+.prose img[data-obsidian-width] {
+  display: inline-block;
+  width: min(var(--obsidian-image-width), 100%);
+  max-width: 100%;
+  margin: 0.35rem 0.4rem 0.35rem 0;
+  vertical-align: top;
+}
+
+.prose img.wide-image {
+  max-width: min(100%, 1080px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.prose img.small-image {
+  max-width: min(100%, 560px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== 表格 ===== */
+.prose table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 1.75rem 0;
+  font-size: 0.96rem;
+  line-height: 1.6;
+  -webkit-overflow-scrolling: touch;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--border-color);
+  padding: 0.7rem 0.9rem;
+  vertical-align: top;
+  min-width: 7.5rem;
+}
+
+.prose th {
+  background: var(--table-header-bg);
+  color: var(--text-primary);
+  font-weight: 700;
+  text-align: left;
+}
+
+.prose tr:nth-child(even) td {
+  background: var(--table-row-alt-bg);
+}
+
+/* ===== 链接 ===== */
+.prose a {
+  color: var(--accent-strong);
+  font-weight: 500;
+  text-decoration-line: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+  transition:
+    color 0.2s,
+    text-decoration-color 0.2s,
+    background-color 0.2s;
+}
+
+.prose a:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+  text-decoration-color: currentColor;
+}
+
+/* ===== 引用块 ===== */
+.prose blockquote {
+  border-left: 4px solid var(--accent);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: var(--text-muted);
+}

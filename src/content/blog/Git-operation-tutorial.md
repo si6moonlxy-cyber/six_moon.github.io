@@ -1881,7 +1881,3 @@ VS Code 日常操作：
 ```text
 Source Control → + → 写提交信息 → Commit → Push
 ```
-
-
----
-*Written By Six_moon*

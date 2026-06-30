@@ -1,0 +1,136 @@
+---
+// TocThumbnail.astro
+// 桌面：嵌入 NavBar，紧贴 ThemeToggle 右侧，横向 "☰ 大纲 ●"
+// 移动：左下角 FAB
+// 默认 hidden，仅 FloatingToc JS 在文章页 removeAttribute('hidden') 时显示
+---
+
+<button
+  class="toc-thumbnail"
+  type="button"
+  data-toc-toggle
+  aria-label="打开大纲"
+  aria-expanded="false"
+  hidden
+>
+  <span class="toc-thumbnail__icon" aria-hidden="true">&#9776;</span>
+  <span class="toc-thumbnail__label">大纲</span>
+  <span class="toc-thumbnail__dot" data-toc-dot aria-hidden="true"></span>
+</button>
+
+<style>
+  /* 强制隐藏：特异性 0,3,0 + !important，覆盖一切 display 规则 */
+  .toc-thumbnail[hidden] {
+    display: none !important;
+  }
+
+  .toc-thumbnail {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    height: 2.25rem;
+    margin: 0 0.35rem 0 0.15rem;
+    padding: 0 0.65rem;
+    border: 1px solid var(--nav-border);
+    border-radius: 0.5rem;
+    background: var(--nav-button-bg);
+    color: var(--nav-text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s,
+      transform 0.2s;
+  }
+
+  .toc-thumbnail:hover {
+    background: var(--nav-button-hover-bg);
+    border-color: var(--nav-border);
+    transform: translateY(-1px);
+  }
+
+  .toc-thumbnail__icon {
+    font-size: 1.05rem;
+    line-height: 1;
+  }
+
+  .toc-thumbnail__label {
+    font-weight: 500;
+  }
+
+  .toc-thumbnail__dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-left: 0.15rem;
+    background: var(--text-muted);
+    transition: background-color 0.3s ease;
+  }
+
+  .toc-thumbnail__dot[data-active] {
+    background: var(--accent);
+    box-shadow: 0 0 6px var(--accent);
+  }
+
+  /* === 移动端 FAB === */
+  @media (max-width: 1019px) {
+    .toc-thumbnail[hidden] {
+      display: none !important;
+    }
+
+    .toc-thumbnail {
+      position: fixed;
+      left: 1rem;
+      bottom: 1.5rem;
+      z-index: 100;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 3.2rem;
+      height: 3.2rem;
+      margin: 0;
+      padding: 0;
+      border: 1.5px solid var(--border-color);
+      border-radius: 50%;
+      background: var(--surface-bg);
+      color: var(--text-primary);
+      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.14);
+      transition:
+        background-color 0.2s,
+        border-color 0.2s,
+        box-shadow 0.2s,
+        transform 0.2s;
+    }
+
+    :global(html[data-theme='dark']) .toc-thumbnail {
+      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+    }
+
+    .toc-thumbnail:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
+      transform: scale(1.06);
+    }
+
+    .toc-thumbnail__label {
+      display: none;
+    }
+
+    .toc-thumbnail__icon {
+      font-size: 1.3rem;
+      color: var(--text-primary);
+    }
+
+    .toc-thumbnail__dot {
+      position: absolute;
+      top: 0.4rem;
+      right: 0.4rem;
+      width: 8px;
+      height: 8px;
+      margin: 0;
+    }
+  }
+</style>

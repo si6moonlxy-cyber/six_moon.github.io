@@ -56,6 +56,3 @@ tags:
 ![image.png](https://res.cloudinary.com/dn3exco8l/image/upload/v1780844354/six-moon-blog/blog/0f7377308585a7e5bac3ecd74cf735a7.png)
 ![image.png|697](https://res.cloudinary.com/dn3exco8l/image/upload/v1780844485/six-moon-blog/blog/689de4b28d238aa779066b460cb28534.png)
 **插件等功能能用即配置成功**
-
----
-*Written By Six_moon*
